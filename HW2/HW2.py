@@ -7,6 +7,10 @@ def bfs_visited(ugraph, start_node):
     graph ugraph and the node start_node
     and returns the set consisting of all
     nodes that are visited by a breadth-first """
+    for node in ugraph:
+        for val in ugraph[node]:
+            if node not in ugraph[val]:
+                ugraph[val].add(node)
     un_queue=deque()
     visited=set([])
     visited.add(start_node)
@@ -27,6 +31,10 @@ def cc_visited(ugraph):
     remain_node={}
     for node in ugraph:
         remain_node[node]=ugraph[node];
+    for node in remain_node:
+        for val in remain_node[node]:
+            if node not in remain_node[val]:
+                remain_node[val].add(node)
     cic_visited=[]
     while len(remain_node)!=0:
         #start_node=random.randrange(0,remain_node_length);

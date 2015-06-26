@@ -9,6 +9,8 @@ import copy
 from UPA import preferential_attachment
 from HW2 import *
 from ER import make_ER_graph
+from targeted import *
+from test import fast_targeted_order
 # Desktop imports
 import matplotlib.pyplot as plt
 
@@ -137,34 +139,45 @@ a_res=compute_resilience(a,a_order)
 b_res=compute_resilience(b,b_order)
 c_res=compute_resilience(c,c_order)
 
+
+
 ###############################################
-with open('new_filea.txt', 'w') as out_file:
+with open('rana.txt', 'w') as out_file:
     for i in range(len(a_res)):
         out_file.write('%d\n'%a_res[i])
 out_file.close()
-with open('new_fileb.txt', 'w') as out_file:
+with open('ranb.txt', 'w') as out_file:
     for i in range(len(b_res)):
         out_file.write('%d\n'%b_res[i])
 out_file.close()
-with open('new_filec.txt', 'w') as out_file:
+with open('ranc.txt', 'w') as out_file:
     for i in range(len(c_res)):
         out_file.write('%d\n'%c_res[i])
 out_file.close()
 
 #####################################################
 import numpy as np
-x_axis=[]
+xa_axis=[]
 for i in range(len(a_res)):
-    x_axis.append(i)
+    xa_axis.append(i)
 
-plt.plot(x_axis,a_res)
-plt.plot(x_axis,b_res)
-plt.plot(x_axis,c_res)
+xb_axis=[]
+for i in range(len(b_res)):
+    xb_axis.append(i)
+
+xc_axis=[]
+for i in range(len(c_res)):
+    xc_axis.append(i)
+
+
+plt.plot(xa_axis,a_res)
+plt.plot(xb_axis,b_res)
+plt.plot(xc_axis,c_res)
 
 plt.xlabel('Number of the attack ')
 plt.ylabel('Resilience of the Network')
 plt.legend(['Example Computer Network','ER Graph','UPA Graph'])
-plt.title('resilience of the network under an attack')
+plt.title('resilience of the network under random attack')
 plt.grid(True)
 plt.savefig("test.png")
 plt.show()
